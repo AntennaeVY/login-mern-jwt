@@ -1,19 +1,19 @@
 const axios = require("axios");
 
-const instance = axios.create({ baseURL: process.env.SERVER_URL });
+const instance = axios.create({ baseURL: process.env.REACT_APP_SERVER_URL });
 
-export function register(data) {
-  if (!data.username || !data.password) {
+export async function register(data) {
+  if (!data.username || !data.password || !data.email) {
     return Promise.reject(new Error("Data is missing"));
   }
-
-  return instance.post("/register", data);
+  console.log(process.env.REACT_APP_SERVER_URL);
+  return await instance.post("/register", data);
 }
 
-export function login(data) {
+export async function login(data) {
   if (!data.username || !data.password) {
     return Promise.reject(new Error("Data is missing"));
   }
 
-  return instance.post("/login", data);
+  return await instance.post("/login", data);
 }

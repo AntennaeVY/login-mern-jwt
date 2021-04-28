@@ -2,11 +2,13 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 const logger = require("morgan");
+const cors = require("cors");
 
 require("dotenv").config({ path: `${__dirname}/config/.env` });
 
 // Config
 app.set("PORT", process.env.PORT);
+app.use(cors({ origin: process.env.CLIENT_URL }));
 
 // Middlewares
 app.use(express.json());
