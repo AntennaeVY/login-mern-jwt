@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -9,10 +9,21 @@ import Form from "../Components/Form";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 
-import { register } from "../lib/network";
+import { register, validate } from "../lib/network";
 
 const Register = () => {
   const [data, setData] = useState({ username: "", email: "", password: "" });
+  let history = useHistory();
+
+  useEffect(() => {
+    validate().then((response) => {
+      if (response.data.success) {
+        history.push("/");
+      }
+    });
+
+    console.log("Register");
+  }, []);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -20,6 +31,8 @@ const Register = () => {
     register(data)
       .then((response) => {
         toast.success(response.data.message);
+        setData({ username: "", email: "", password: "" });
+        history.push("/");
       })
       .catch((err) => {
         if (err.response) {
@@ -28,10 +41,8 @@ const Register = () => {
           toast.error(err.request);
         } else {
           toast.error(err.message);
-        } 
+        }
       });
-
-    setData({ username: "", email: "", password: "" });
   };
 
   const handleOnChange = (name) => (e) => {
@@ -66,6 +77,9 @@ const Register = () => {
             handleOnChange={handleOnChange("password")}
           />
           <Button type="submit" style="primary" text="Submit" />
+          <Link to="/login" className="mt-2 text-xs text-blue-400">
+            Sign In
+          </Link>
         </Form>
       </OverlayContainer>
     </>

@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const app = express();
 const logger = require("morgan");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 require("dotenv").config({ path: `${__dirname}/config/.env` });
 
@@ -12,6 +13,7 @@ app.use(cors({ origin: process.env.CLIENT_URL }));
 
 // Middlewares
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
