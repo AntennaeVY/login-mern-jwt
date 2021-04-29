@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
+import { logout } from "../lib/network";
 
 const Logout = () => {
-  return <div>Logout Works</div>;
+  let history = useHistory();
+
+  useEffect(() => {
+    logout()
+      .then(() => {
+        history.push("/login");
+      })
+      .catch(() => {
+        history.push("/register");
+      });
+  }, []);
+
+  return (
+    <>
+      <div>Logout Works</div>;
+    </>
+  );
 };
 
 export default Logout;

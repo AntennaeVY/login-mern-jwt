@@ -19,6 +19,10 @@ export async function login(data) {
   return await instance.post("/login", data);
 }
 
+export async function logout() {
+  return await instance.get("/logout");
+}
+
 export async function validate() {
   return await instance.get("/users/validate");
 }

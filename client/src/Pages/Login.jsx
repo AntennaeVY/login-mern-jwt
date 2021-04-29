@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -8,6 +8,7 @@ import Title from "../Components/Title";
 import Form from "../Components/Form";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
+import URL from "../Components/URL";
 
 import { login, validate } from "../lib/network";
 
@@ -21,8 +22,6 @@ const Login = () => {
         history.push("/");
       }
     });
-
-    console.log("Login");
   }, []);
 
   const handleOnSubmit = (e) => {
@@ -70,9 +69,7 @@ const Login = () => {
             handleOnChange={handleOnChange("password")}
           />
           <Button type="submit" style="primary" text="Submit" />
-          <Link to="/register" className="mt-2 text-xs text-blue-400">
-            Sign Up
-          </Link>
+          <URL path="/register" text="Sign Up" />
         </Form>
       </OverlayContainer>
     </>

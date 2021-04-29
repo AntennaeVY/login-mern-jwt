@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 
+import URL from "../Components/URL";
+
 import { validate } from "../lib/network";
 
 const Root = () => {
@@ -12,13 +14,12 @@ const Root = () => {
         history.push("/login");
       }
     });
-
-    console.log("Root");
   }, []);
 
   return (
     <>
       <div>Root Works</div>
+      <URL path="/logout" text="Log Out" />
     </>
   );
 };

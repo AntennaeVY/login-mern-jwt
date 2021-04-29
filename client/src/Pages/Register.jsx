@@ -8,6 +8,7 @@ import Title from "../Components/Title";
 import Form from "../Components/Form";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
+import URL from "../Components/URL";
 
 import { register, validate } from "../lib/network";
 
@@ -21,8 +22,6 @@ const Register = () => {
         history.push("/");
       }
     });
-
-    console.log("Register");
   }, []);
 
   const handleOnSubmit = (e) => {
@@ -77,9 +76,7 @@ const Register = () => {
             handleOnChange={handleOnChange("password")}
           />
           <Button type="submit" style="primary" text="Submit" />
-          <Link to="/login" className="mt-2 text-xs text-blue-400">
-            Sign In
-          </Link>
+          <URL path="/login" text="Sign In" />
         </Form>
       </OverlayContainer>
     </>

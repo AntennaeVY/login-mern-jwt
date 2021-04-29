@@ -1,7 +1,7 @@
 import React from "react";
 
 const Button = (props) => {
-  const { type = "", style, text } = props;
+  const { type = "", handleOnClick = () => {}, style, text } = props;
 
   const styles = {
     primary: "bg-blue-400 hover:bg-blue-500 focus:bg-blue-500",
